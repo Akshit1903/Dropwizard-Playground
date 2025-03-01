@@ -1,0 +1,22 @@
+swagger:
+  resourcePackage: "com.akshit.resources"  # Adjust to your API package
+  title: "Playground APIs"
+  version: "1.0"
+  description: "This API provides access to My Dropwizard Service."
+  termsOfServiceUrl: "https://example.com/terms"
+  contact: "API Support"
+  contactEmail: "support@example.com"
+  contactUrl: "https://example.com/support"
+  license: "Apache 2.0"
+  licenseUrl: "https://www.apache.org/licenses/LICENSE-2.0.html"
+  prettyPrint: true
+  host: "localhost:8080"
+  contextRoot: "/"
+  schemes: ["http", "https"]
+  enabled: true
+  includeSwaggerResource: true
+  readAllResources: true
+
+name: akshit
+
+
