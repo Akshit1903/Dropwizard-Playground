@@ -17,8 +17,8 @@ if ! git diff --quiet HEAD origin/"$BRANCH"; then
     # Pull latest changes
     git pull origin "$BRANCH"
 
-    # Build the project
-    mvn clean install -DskipTests
+    # Build the project using local mvn
+    mvn clean install -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Djavax.net.ssl.trustStorePassword=changeit
 
     # Find and kill the running Java process
     PID=$(pgrep -f "playground.jar")
