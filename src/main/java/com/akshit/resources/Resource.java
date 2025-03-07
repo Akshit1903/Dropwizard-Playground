@@ -18,6 +18,6 @@ public class Resource {
     @Operation(summary = "Say Hello")
     @Path("/abc")
     public SampleResponse getSampleResponse() {
-        return SampleResponse.builder().name("Akshit4").message("Hi").build();
+        return SampleResponse.builder().name("Akshit5").message("Hi").build();
     }
 }
