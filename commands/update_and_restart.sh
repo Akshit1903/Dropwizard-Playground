@@ -4,6 +4,7 @@ REPO_DIR="/home/akshit/Dropwizard-Playground"
 JAR_PATH="$REPO_DIR/target/playground.jar"
 CONFIG_PATH="$REPO_DIR/config/local.yml"
 BRANCH="main"  # Change this if needed
+MVN_CMD="$REPO_DIR/mvn"  # Use the local mvn executable
 
 cd "$REPO_DIR" || exit
 
@@ -18,7 +19,7 @@ if ! git diff --quiet HEAD origin/"$BRANCH"; then
     git pull origin "$BRANCH"
 
     # Build the project using local mvn
-    mvn clean install -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Djavax.net.ssl.trustStorePassword=changeit
+    "$MVN_CMD" clean install -DskipTests
 
     # Find and kill the running Java process
     PID=$(pgrep -f "playground.jar")
