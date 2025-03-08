@@ -1,19 +1,28 @@
-# Use Eclipse Temurin JDK 17 (compatible with your Maven settings)
-FROM eclipse-temurin:17-jdk
+# Use the official Maven image with JDK 17
+FROM maven:3.8.8-eclipse-temurin-17 AS builder
 
-# Set working directory inside the container
+# Set working directory
 WORKDIR /app
 
-COPY pom.xml ./pom.xml
+# Copy the project files
+COPY pom.xml .
 COPY src ./src
+
+# Build the application
 RUN mvn clean package -DskipTests
 
-# Copy the built JAR file and config
-#COPY target/playground.jar /app/app.jar
+# Use a smaller JDK runtime for the final image
+FROM eclipse-temurin:17-jdk
+
+# Set working directory
+WORKDIR /app
+
+# Copy the built JAR file from the builder stage
+COPY --from=builder /app/target/playground.jar /app/app.jar
 COPY config/local.yml /app/config.yml
 
 # Expose the Dropwizard application port (default: 8080)
 EXPOSE 8080
 
 # Run the Dropwizard application
-CMD ["java", "-jar", "./target/playground.jar", "server", "/app/config.yml"]
+CMD ["java", "-jar", "/app/app.jar", "server", "/app/config.yml"]
