@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="App" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="com.akshit.App" />
+    <module name="playground" />
+    <option name="PROGRAM_PARAMETERS" value="server ./config/local.yml" />
+    <method v="2" />
+  </configuration>
+</component>

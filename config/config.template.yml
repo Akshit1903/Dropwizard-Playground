@@ -17,6 +17,21 @@ swagger:
   includeSwaggerResource: true
   readAllResources: true
 
+database:
+  driverClass: org.postgresql.Driver
+  user: ${DB_USER}
+  password: ${DB_PASSWORD}
+  url: ${DB_URL}
+  properties:
+    charSet: UTF-8
+    hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate.show_sql: true
+    hibernate.format_sql: true
+    hibernate.hbm2ddl.auto: update
+  maxSize: 10
+  minSize: 2
+  initialSize: 2
+
 name: akshit2
 
 

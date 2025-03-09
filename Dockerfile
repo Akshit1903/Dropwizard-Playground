@@ -19,7 +19,7 @@ WORKDIR /app
 
 # Copy the built JAR file from the builder stage
 COPY --from=builder /app/target/playground.jar /app/app.jar
-COPY config/local.yml /app/config.yml
+RUN chmod +x commands/generate_config_remote.sh
 
 # Expose the Dropwizard application port (default: 8080)
 EXPOSE 8080
