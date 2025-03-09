@@ -13,13 +13,14 @@ RUN mvn clean package -DskipTests
 
 # Use a smaller JDK runtime for the final image
 FROM eclipse-temurin:17-jdk
-
 # Set working directory
 WORKDIR /app
 
 # Copy the built JAR file from the builder stage
 COPY --from=builder /app/target/playground.jar /app/app.jar
-RUN chmod +x commands/generate_config_remote.sh
+COPY commands/generate_config_remote.sh /app/generate.sh
+RUN chmod +x /app/generate.sh
+RUN /app/generate.sh
 
 # Expose the Dropwizard application port (default: 8080)
 EXPOSE 8080
