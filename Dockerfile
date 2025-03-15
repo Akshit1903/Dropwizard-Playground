@@ -5,6 +5,8 @@ WORKDIR /app
 COPY commands/generate_config_remote.sh /app/generate.sh
 COPY config/config.template.yml /app/config.template.yml
 
+RUN apk add --no-cache gettext
+
 RUN chmod +x /app/generate.sh \
     && sed -i 's/\r$//' /app/generate.sh \
     && ls -l /app/ \
