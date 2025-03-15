@@ -23,7 +23,7 @@ WORKDIR /app
 COPY --from=builder /app/target/playground.jar /app/app.jar
 
 COPY commands/generate_config_remote.sh /app/generate.sh
-COPY config/config.template.yml /app/config.template.yml
+COPY config/config.template.yml /app/config.yml
 
 # Expose the Dropwizard application port (default: 8080)
 EXPOSE 8080
