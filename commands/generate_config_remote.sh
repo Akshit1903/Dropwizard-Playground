@@ -22,6 +22,4 @@ while IFS='=' read -r key value; do
     sed -i "s|\${$key}|$value|g" "$OUTPUT_FILE"
 done < <(env)
 
-cat "$OUTPUT_FILE"
-
 echo "✅ Config file generated: $OUTPUT_FILE"
