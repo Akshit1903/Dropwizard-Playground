@@ -1,14 +1,27 @@
-#!/bin/sh
+#!/bin/bash
 
-set -e  # Exit immediately if a command exits with a non-zero status
+# Define input and output files
+TEMPLATE_FILE="/app/config.template.yml"
+OUTPUT_FILE="/app/config.yml"
 
-# Check if envsubst is available
-if ! command -v envsubst >/dev/null 2>&1; then
-    echo "❌ ERROR: envsubst command not found. Install gettext package."
+# Ensure the template file exists
+if [[ ! -f "$TEMPLATE_FILE" ]]; then
+    echo "❌ ERROR: Template file '$TEMPLATE_FILE' not found!"
     exit 1
 fi
 
-# Replace placeholders in config.template.yml and save to config.yml
-envsubst < /app/config.template.yml > /app/config.yml
+# Create the output file
+cp "$TEMPLATE_FILE" "$OUTPUT_FILE"
 
-echo "✅ Config file generated: config.yml"
+# Read all environment variables and replace placeholders in the config file
+while IFS='=' read -r key value; do
+    # Skip empty lines and comments
+    [[ -z "$key" || "$key" =~ ^#.*$ ]] && continue
+
+    # Replace ${KEY} with its actual value
+    sed -i "s|\${$key}|$value|g" "$OUTPUT_FILE"
+done < <(env)
+
+cat "$OUTPUT_FILE"
+
+echo "✅ Config file generated: $OUTPUT_FILE"
