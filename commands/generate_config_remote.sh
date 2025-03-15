@@ -17,6 +17,4 @@ while IFS='=' read -r key value; do
     sed -i "s|\${$key}|$value|g" "$CONFIG_FILE"
 done < <(env)
 
-cat "$CONFIG_FILE"
-
 echo "✅ Config file generated: $CONFIG_FILE"

@@ -13,7 +13,7 @@ swagger:
   host: "localhost:8080"
   contextRoot: "/"
   schemes: ["http", "https"]
-  enabled: true
+  enabled: ${IS_SWAGGER_ENABLED}
   includeSwaggerResource: true
   readAllResources: true
 
