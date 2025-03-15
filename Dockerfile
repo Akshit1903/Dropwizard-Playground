@@ -29,5 +29,5 @@ COPY config/config.template.yml /app/config.template.yml
 EXPOSE 8080
 
 # Run the Dropwizard application
-CMD ["/bin/sh", "-c", "/app/generate.sh && java -jar /app/app.jar server /app/config.yml"]
+CMD ["/bin/sh", "-c", "chmod +x /app/generate.sh && /app/generate.sh && java -jar /app/app.jar server /app/config.yml"]
 
