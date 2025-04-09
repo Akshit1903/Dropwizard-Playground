@@ -20,6 +20,6 @@ public class AppConfiguration extends Configuration {
 
     @Valid
     @NotNull
-    private DataSourceFactory database = new DataSourceFactory();
+    private DataSourceFactory database;
 
 }

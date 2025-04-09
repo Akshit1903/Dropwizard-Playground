@@ -12,7 +12,7 @@ swagger:
   prettyPrint: true
   host: "localhost:8080"
   contextRoot: "/"
-  schemes: ["http", "https"]
+  schemes: [ "http", "https" ]
   enabled: ${IS_SWAGGER_ENABLED}
   includeSwaggerResource: true
   readAllResources: true

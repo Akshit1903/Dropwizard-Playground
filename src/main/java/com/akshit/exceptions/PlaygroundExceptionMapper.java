@@ -1,6 +1,5 @@
 package com.akshit.exceptions;
 
-import com.akshit.exceptions.PlaygroundException;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;

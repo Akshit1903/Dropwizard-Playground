@@ -2,16 +2,16 @@ package com.akshit.resources;
 
 import com.akshit.db.PersonDAO;
 import com.akshit.db.PersonEntity;
-import com.akshit.exceptions.PlaygroundException;
 import com.akshit.models.Person;
 import com.akshit.models.SampleResponse;
+import com.akshit.services.PersonService;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
 import jdk.jfr.Description;
+import org.hibernate.SessionFactory;
 
 import java.util.List;
 
@@ -21,9 +21,13 @@ import java.util.List;
 @Tag(name = "Housekeeping APIs", description = "does housekeeping")
 public class Resource {
     PersonDAO personDAO;
-    public Resource(PersonDAO personDAO){
-        this.personDAO=personDAO;
+    PersonService personService;
+
+    public Resource(PersonDAO personDAO, SessionFactory sessionFactory) {
+        this.personDAO = personDAO;
+        personService = new PersonService(sessionFactory);
     }
+
     @GET
     @Description("Housekeeping API")
     @Operation(summary = "Say Hello")
@@ -37,8 +41,8 @@ public class Resource {
     @Operation(summary = "Get all persons")
     @Path("/persons")
     @UnitOfWork
-    public List<PersonEntity> getPersons() {
-        return personDAO.findAllPersons();
+    public List<Person> getPersons() {
+        return personService.getAllPersons();
     }
 
     @GET
@@ -47,7 +51,7 @@ public class Resource {
     @Path("/person/{id}")
     @UnitOfWork
     public PersonEntity getPerson(@PathParam("id") Long id) {
-        return personDAO.findPersonById(id);
+        return personService.getPersonById(id).orElse(null);
     }
 
     @POST
@@ -55,19 +59,17 @@ public class Resource {
     @Operation(summary = "Create person")
     @Path("/person")
     @UnitOfWork
-    public PersonEntity createPerson(Person person) {
-        PersonEntity personEntity=PersonEntity.builder().name(person.getName()).age(person.getAge()).build();
-        return personDAO.createPerson(personEntity);
+    public Person createPerson(Person person) {
+        return personService.createPerson(person);
     }
 
     @PUT
     @Description("Update person")
     @Operation(summary = "Update person")
-    @Path("/person")
+    @Path("/person/{id}")
     @UnitOfWork
-    public PersonEntity updatePerson(Person person) {
-        PersonEntity personEntity=PersonEntity.builder().id(person.getId()).name(person.getName()).age(person.getAge()).build();
-        return personDAO.updateEntity(personEntity,personEntity.getId());
+    public Person updatePerson(@PathParam("id") Long id, Person person) {
+        return personService.updatePerson(id, person);
     }
 
     @DELETE
@@ -75,7 +77,7 @@ public class Resource {
     @Operation(summary = "Delete person by id")
     @Path("/person/{id}")
     @UnitOfWork
-    public PersonEntity deletePerson(@PathParam("id") Long id) {
-        return personDAO.deletePerson(id);
+    public Person deletePerson(@PathParam("id") Long id) {
+        return personService.deletePerson(id);
     }
 }

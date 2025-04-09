@@ -15,10 +15,7 @@ import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
 import org.hibernate.SessionFactory;
 
 public class App extends Application<AppConfiguration> {
-    public static void main(String[] args) throws Exception {
-        new App().run(args);
-    }
-    private final SwaggerBundle<AppConfiguration> swaggerBundle=new SwaggerBundle<AppConfiguration>() {
+    private final SwaggerBundle<AppConfiguration> swaggerBundle = new SwaggerBundle<AppConfiguration>() {
         @Override
         protected SwaggerBundleConfiguration getSwaggerBundleConfiguration(AppConfiguration configuration) {
             return configuration.getSwagger();
@@ -32,6 +29,9 @@ public class App extends Application<AppConfiguration> {
         }
     };
 
+    public static void main(String[] args) throws Exception {
+        new App().run(args);
+    }
 
     @Override
     public void initialize(Bootstrap<AppConfiguration> bootstrap) {
@@ -46,7 +46,7 @@ public class App extends Application<AppConfiguration> {
         environment.jersey().register(new PlaygroundExceptionMapper());
         final SessionFactory sessionFactory = hibernate.getSessionFactory();
         final PersonDAO personDAO = new PersonDAO(sessionFactory);
-        environment.jersey().register(new Resource(personDAO));
+        environment.jersey().register(new Resource(personDAO, sessionFactory));
         TemplateHealthCheck healthCheck = new TemplateHealthCheck("%s");
         environment.healthChecks().register("template", healthCheck);
     }

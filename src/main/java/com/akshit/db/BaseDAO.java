@@ -1,10 +1,14 @@
 package com.akshit.db;
 
 import io.dropwizard.hibernate.AbstractDAO;
-import org.hibernate.SessionFactory;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
+import org.hibernate.SessionFactory;
+
 import java.lang.reflect.Field;
+import java.util.List;
+import java.util.Optional;
 
 public abstract class BaseDAO<T> extends AbstractDAO<T> {
 
@@ -15,9 +19,24 @@ public abstract class BaseDAO<T> extends AbstractDAO<T> {
         this.entityClass = entityClass;
     }
 
-    public T updateEntity(T entity, Long id) {
+    public T createEntity(T entity) {
+        return persist(entity);
+    }
+
+    public Optional<T> findEntityById(Long id) {
+        return Optional.of(get(id));
+    }
+
+    public List<T> findAllEntities() {
+        CriteriaBuilder cb = currentSession().getCriteriaBuilder();
+        CriteriaQuery<T> cq = cb.createQuery(entityClass);
+        Root<T> root = cq.from(entityClass);
+        cq.select(root);
+        return list(cq);
+    }
+
+    public T updateEntity(Long id, T entity) {
         try {
-            // Fetch the existing entity from DB
             T existingEntity = get(id);
             if (existingEntity == null) {
                 throw new RuntimeException("Entity not found with ID: " + id);
@@ -36,5 +55,14 @@ public abstract class BaseDAO<T> extends AbstractDAO<T> {
         } catch (Exception e) {
             throw new RuntimeException("Error updating entity: " + e.getMessage(), e);
         }
+    }
+
+    public T deleteEntity(Long id) {
+        T entity = get(id);
+        if (entity == null) {
+            throw new RuntimeException("Entity not found with ID: " + id);
+        }
+        currentSession().remove(entity);
+        return entity;
     }
 }

@@ -10,9 +10,9 @@ public class PlaygroundException extends RuntimeException {
     private final String message;
     private final Response.Status status;
 
-    public PlaygroundException(Response.Status status,String message) {
+    public PlaygroundException(Response.Status status, String message) {
         super(message);
         this.message = message;
-        this.status=status;
+        this.status = status;
     }
 }
