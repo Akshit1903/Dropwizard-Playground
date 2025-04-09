@@ -2,10 +2,7 @@ package com.akshit;
 
 import com.akshit.db.PersonEntity;
 import com.akshit.exceptions.PlaygroundExceptionMapper;
-import com.akshit.resources.Resource;
-import com.akshit.services.PersonService;
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.google.inject.Stage;
 import io.dropwizard.core.Application;
 import io.dropwizard.core.setup.Bootstrap;
 import io.dropwizard.core.setup.Environment;
@@ -13,7 +10,6 @@ import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.hibernate.HibernateBundle;
 import io.federecio.dropwizard.swagger.SwaggerBundle;
 import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
-import org.hibernate.SessionFactory;
 import ru.vyarus.dropwizard.guice.GuiceBundle;
 
 public class App extends Application<AppConfiguration> {

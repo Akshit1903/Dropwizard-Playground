@@ -1,6 +1,5 @@
 package com.akshit.resources;
 
-import com.akshit.db.PersonDAO;
 import com.akshit.db.PersonEntity;
 import com.akshit.models.Person;
 import com.akshit.models.SampleResponse;
@@ -12,9 +11,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jdk.jfr.Description;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.SessionFactory;
 
 import java.util.List;
 
