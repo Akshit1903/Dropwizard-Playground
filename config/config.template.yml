@@ -32,6 +32,11 @@ database:
   minSize: 2
   initialSize: 2
 
+logging:
+  level:
+    org.hibernate.SQL: INFO
+    org.hibernate.engine.internal.StatisticalLoggingSessionEventListener: OFF
+
 name: akshit2
 
 

@@ -5,12 +5,15 @@ import com.akshit.db.PersonEntity;
 import com.akshit.models.Person;
 import com.akshit.models.SampleResponse;
 import com.akshit.services.PersonService;
+import com.google.inject.Inject;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jdk.jfr.Description;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.hibernate.SessionFactory;
 
 import java.util.List;
@@ -19,12 +22,10 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @Tag(name = "Housekeeping APIs", description = "does housekeeping")
+@RequiredArgsConstructor(onConstructor = @__(@Inject))
 public class Resource {
-    PersonService personService;
 
-    public Resource(SessionFactory sessionFactory) {
-        personService = new PersonService(sessionFactory);
-    }
+    private final PersonService personService;
 
     @GET
     @Description("Housekeeping API")

@@ -3,6 +3,8 @@
     <option name="MAIN_CLASS_NAME" value="com.akshit.App" />
     <module name="playground" />
     <option name="PROGRAM_PARAMETERS" value="server ./config/local.yml" />
-    <method v="2" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
   </configuration>
 </component>
