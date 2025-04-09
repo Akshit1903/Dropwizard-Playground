@@ -46,7 +46,7 @@ public class App extends Application<AppConfiguration> {
         environment.jersey().register(new PlaygroundExceptionMapper());
         final SessionFactory sessionFactory = hibernate.getSessionFactory();
         final PersonDAO personDAO = new PersonDAO(sessionFactory);
-        environment.jersey().register(new Resource(personDAO, sessionFactory));
+        environment.jersey().register(new Resource(sessionFactory));
         TemplateHealthCheck healthCheck = new TemplateHealthCheck("%s");
         environment.healthChecks().register("template", healthCheck);
     }
