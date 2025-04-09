@@ -1,4 +1,4 @@
-package com.akshit.exceptions;
+package com.akshit.utils.exceptions;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.ws.rs.core.Response;

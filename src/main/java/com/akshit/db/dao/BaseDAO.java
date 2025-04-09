@@ -1,4 +1,4 @@
-package com.akshit.db;
+package com.akshit.db.dao;
 
 import io.dropwizard.hibernate.AbstractDAO;
 import jakarta.persistence.criteria.CriteriaBuilder;

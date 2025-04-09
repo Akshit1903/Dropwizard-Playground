@@ -1,6 +1,6 @@
-package com.akshit;
+package com.akshit.utils;
 
-import com.akshit.exceptions.PlaygroundException;
+import com.akshit.utils.exceptions.PlaygroundException;
 import jakarta.ws.rs.core.Response;
 
 import java.lang.reflect.Field;

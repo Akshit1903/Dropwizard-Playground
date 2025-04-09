@@ -1,5 +1,6 @@
-package com.akshit.db;
+package com.akshit.db.dao;
 
+import com.akshit.db.entities.PersonEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.SessionFactory;
 

@@ -1,4 +1,4 @@
-package com.akshit.db;
+package com.akshit.db.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;

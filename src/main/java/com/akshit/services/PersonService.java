@@ -1,23 +1,21 @@
 package com.akshit.services;
 
-import com.akshit.Utils;
-import com.akshit.db.PersonDAO;
-import com.akshit.db.PersonEntity;
-import com.akshit.exceptions.PlaygroundException;
+import com.akshit.db.dao.PersonDAO;
+import com.akshit.db.entities.PersonEntity;
 import com.akshit.models.Person;
+import com.akshit.utils.Utils;
+import com.akshit.utils.exceptions.PlaygroundException;
+import com.google.inject.Inject;
 import jakarta.ws.rs.core.Response;
-import org.hibernate.SessionFactory;
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
 
+@RequiredArgsConstructor(onConstructor = @__(@Inject))
 public class PersonService {
     private final PersonDAO personDAO;
-
-    public PersonService(SessionFactory sessionFactory) {
-        personDAO = new PersonDAO(sessionFactory);
-    }
 
     private <T> T executeWithExceptionHandling(Supplier<T> action, String errorMessage) {
         try {

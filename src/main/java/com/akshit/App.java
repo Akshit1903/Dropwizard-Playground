@@ -1,7 +1,9 @@
 package com.akshit;
 
-import com.akshit.db.PersonEntity;
-import com.akshit.exceptions.PlaygroundExceptionMapper;
+import com.akshit.db.entities.PersonEntity;
+import com.akshit.utils.AppModule;
+import com.akshit.utils.TemplateHealthCheck;
+import com.akshit.utils.exceptions.PlaygroundExceptionMapper;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import io.dropwizard.core.Application;
 import io.dropwizard.core.setup.Bootstrap;

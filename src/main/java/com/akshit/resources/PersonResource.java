@@ -1,6 +1,6 @@
 package com.akshit.resources;
 
-import com.akshit.db.PersonEntity;
+import com.akshit.db.entities.PersonEntity;
 import com.akshit.models.Person;
 import com.akshit.models.SampleResponse;
 import com.akshit.services.PersonService;
@@ -20,7 +20,7 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_JSON)
 @Tag(name = "Housekeeping APIs", description = "does housekeeping")
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
-public class Resource {
+public class PersonResource {
 
     private final PersonService personService;
 

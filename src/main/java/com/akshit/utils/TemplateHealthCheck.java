@@ -1,4 +1,4 @@
-package com.akshit;
+package com.akshit.utils;
 
 import com.codahale.metrics.health.HealthCheck;
 
