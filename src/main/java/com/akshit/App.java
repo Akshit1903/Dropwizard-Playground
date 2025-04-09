@@ -48,7 +48,7 @@ public class App extends Application<AppConfiguration> {
     }
 
     @Override
-    public void run(AppConfiguration appConfiguration, Environment environment) throws Exception {
+    public void run(AppConfiguration appConfiguration, Environment environment) {
         environment.getObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         environment.jersey().register(new PlaygroundExceptionMapper());
         TemplateHealthCheck healthCheck = new TemplateHealthCheck("%s");
