@@ -20,11 +20,9 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_JSON)
 @Tag(name = "Housekeeping APIs", description = "does housekeeping")
 public class Resource {
-    PersonDAO personDAO;
     PersonService personService;
 
-    public Resource(PersonDAO personDAO, SessionFactory sessionFactory) {
-        this.personDAO = personDAO;
+    public Resource(SessionFactory sessionFactory) {
         personService = new PersonService(sessionFactory);
     }
 
